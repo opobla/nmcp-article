@@ -37,6 +37,26 @@ Catalán$^{1,2}$ and D. Radchenko$^{2}$}
 %% NMDB data quality. The origin of the spikes. The revision mechanism at NMDB.
 %% The need of controlling monitor operation and data. The data acquisition system and
 %% how it is related with the operation of the station and its data quality.
+Neutron Monitor data is widely used by researchers in different research fields not necessarily related with cosmic rays. That's why the NMBD
+puts effort into delivering data with the best quality possible. The data is also used in real time GLE alarm systems and other real time
+applications therefore the data quality protocol must be applied in real time. Eventually the data will be revised by a human supervisor to 
+ensure the correct behaviour of the quality protocol. By quality protocol we refer to all the methods and techniques used such as:
+\begin{itemize}
+	\item   Detection of abnormal data, commonly referred as spikes.
+	\item   Detection of inactivity which will lead to a notification to the team responsible for the neutron monitor station.
+	\item   Monitor neutrons are usually formed by 18 counter tubes. A malfunction in a single tube won't affect the overall value measured
+	  	by the neutron monitor but it's not something desirable. This leads us to the need of monitoring and detection of malfunctions
+		separately in each of the tubes.  
+	\item	Detection of changes regard of the historical activity. Instrumental changes or changes in the immediate environment can cause 
+	  	overall changes in the measured values of a monitor neutron. Detecting and correcting those changes is desirable.
+	\item 	Comparing the data from one NM station with the data of different nearby NM stations. Detecting isolated events in one NM
+	  	station indicates us that there is a malfunction in that NM station.	
+\end{itemize}
+Once detected the corrupt data, most of the times it can be traced down to its cause. Most of the times those malfunctions are caused by the
+instruments forming the data acquisition system. Detecting the corrupt data and its cause helps us to improve and learn more about the data
+acquisition system. In order to make easier the detection of the corrupt data we are working in the development of a Web tool which will help
+us detect the corrupted data. The Web application makes use of dynamically generated plots which aim to highlight possible corrupted data.
+
 
 blabla \cite{Garcia2014}
 blabla \cite{Medina2013}
