@@ -58,32 +58,44 @@ acquisition system. In order to make easier the detection of the corrupt data we
 us detect the corrupted data. The Web application makes use of dynamically generated plots which aim to highlight possible corrupted data.
 
 
-blabla \cite{Garcia2014}
 blabla \cite{Medina2013}
 blabla \cite{NMDB2011}
 blabla \cite{Forbush1938}
 
 \section{System architecture}
 
-\huge{OGarcia}
+There are two main roles in the architecture: a client that requests and
+consumes data using a web browser, and a system that collects and serves the
+data, which in this system is the data acquisition system\cite{Garcia2014}. This
+separation of roles follows the client-server design
+pattern\cite{wiki:ClientServer}.
 
-%% ¿Qué partes constituyen el nuevo software? ¿Cómo se integran esas partes
-%% entre sí y con el sistema de acquisicion de datos? Es la parte del poster que
-%% habla de ``Architecture''
+The software architecture is based on the Model-View-Controller (MVC) software
+design pattern\cite{wiki:MVC}. This pattern encourages the separation between
+the data, the data processing and the data representation. 
 
-	Blah blah blah
-	On figure \ref{fig:arch} we can see blah
+The view component is in charge of the data representation and the user
+interface. In our system, this component is mainly executed by the client in a
+web browser. The browser is not only a convenient graphical output device but
+also provides a way to interact with the user. In response to these
+interactions, the browser makes requests to a server which answers back with new
+data to be represented.
 
-	\begin{figure}[h]
-		\centering
-		\includegraphics[keepaspectratio, width=1\textwidth]{./resources/Architecture.png}
-		\caption{Architecture}
-		\label{fig:arch}
-	\end{figure}
+The model component is located on the server side, in the data acquisition
+system. This model comprises all the data captured from each counter tube and
+the algorithms used to process these data, such as atmospheric pressure
+corrections, sanity controls, editors to combine all the readings into a single
+one, etc.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[keepaspectratio, width=1\textwidth]{./resources/Architecture.png}
+    \caption{Architecture}
+    \label{fig:arch}
+\end{figure}
 
 \section{The spike tool}
 
-\huge{Hristo}
 
 %% Aquí hablaremos concretamente del spike tool. Sobre todo de cómo funciona
 %% cara al usuario.
