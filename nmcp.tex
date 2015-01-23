@@ -95,10 +95,40 @@ one, etc.
 \end{figure}
 
 \section{The spike tool}
-
-
 %% Aquí hablaremos concretamente del spike tool. Sobre todo de cómo funciona
 %% cara al usuario.
+Currently the Spike Tool consist of three modules Spike, SpikeCorrected and ChannelStats. Spike and SpikeCorrected are very similar, 
+SpikeCorrected works with a different set of data and have some extra functionality.
+
+The Spike module offers a highly interactive chart in which the spikes are easy to trace. Initially the chart displays a large set of
+data, and some kind of data grouping is needed. Just averaging the data flattens the spikes. Candlestick chart is used to prevent the
+problem formerly detailed, this way the max and min values can be easily distinguished. Eventually when a short interval of data is 
+requested and no grouping is needed to display the data, the chart will automatically switch to line chart.
+
+As mentioned above the chart is highly interactive. It offers a very intuitive zooming facility. Clicking and dragging through and 
+interval of the chart will raise a zoom event. Depending of the drag direction, the event will be zoom In or zoom Out. The chart 
+offers a navigator which allows us to navigate forward or backward. Datetime input fields are available too, those allows us plot a
+specific time interval.
+
+At first the uncorrected data is used to generate the charts, but we are given the chance to choose between Uncorrected, efficiency
+and pressure corrected data. The atmospheric  pressure is also plotted, this help us to evaluate how the atmospheric pressure affects
+the measurements of our Neutron Monitor station.
+
+Once we have localized a spike we can see the raw reading of the counter tubes. This allow us identify better the spike. Due to the
+fact that there is 18 channels this option is available only when no data grouping is needed.
+
+As said the SpikeCorrected module is very similar to the Spike module which we've been explaining above. First of all, this module 
+use diferent set of data. The Spike module use the raw data which proceeds from the data adquisition system. SpikeCorr use the 
+revisited data. Clicking on data, marks the data. The marked data is stored in a grid which we can visualize later on a separate 
+window. Eventually we can submit the marked data to the revisited set of data. This means that the mentioned data will be considered 
+invalid and treated as void in the future.
+
+The marking is done through clicking on the data we want to mark. Once marked, on the time axis a flag will be added, the flag will
+make it easier visualize marked data. There is a grid which contains all the marked data. This grid is visualized on a separate
+windows. The window can be hidden when not needed and shown when needed. In that window we can also find the submit button.
+
+%%TODO add ChannelStats module
+
 \begin{figure}[h]
     \centering
     \includegraphics[keepaspectratio, width=1\textwidth]{./resources/SpikeTool.png}
