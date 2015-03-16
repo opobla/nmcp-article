@@ -18,35 +18,39 @@ Catalán$^{1,2}$ and D Radchenko$^{2}$}
 \ead{oscar.gpoblacion@uah.es}
 
 \begin{abstract} 
-    This work presents the current status and future plans of the
-    Neutron Monitor Control Panel (NMCP), a new software developed to aid the
-    operator in typical station maintenance and configuration operations. This
-    software is integrated with the new NOAS data acquisition system and it can
-    be accessed using a supported web browser. It features a visual inspection
-    tool to help the operator to identify spikes in the data, trace the origin
-    of the spike back to the raw readings of each counter tube and pressure
-    reading, and mark the data as invalid in the Neutron Monitor Database if
-    desired. The software also provides information about station operation
-    status, some descriptive statistics about current data being recorded and,
-    in the future, will provide an interface to configure station parameters.
+
+    This work presents the current status and future plans of the Neutron
+    Monitor Control Panel (NMCP), a new software developed to aid the operator
+    in typical station maintenance and configuration operations. This software
+    is integrated with the new so called NOAS data acquisition system and it
+    can be accessed using a supported web browser. It features a visual
+    inspection tool to help the operator to identify spikes in the data, trace
+    the origin of the spike back to the raw readings of each counter tube and
+    pressure reading, and mark the data as invalid in the Neutron Monitor
+    Database if desired. The software also provides information about station
+    operation status, some descriptive statistics about current data being
+    recorded and, in the future, will provide an interface to configure station
+    parameters.
+
 \end{abstract}
 
 \section{Introduction}
 
-Neutron Monitor data is widely used by researchers in different research fields
-not necessarily related to cosmic rays, such as space weather and/or geomagnetic
-studies. That's why the Neutron Monitor Database (NMDB)\cite{NMDB2011} puts
-effort into delivering data with the best quality possible. The data are also
-used in real-time GLE alarm systems and other real-time applications; therefore,
-the data quality protocol must be applied in real-time. Eventually, the data
-will be revised by a human supervisor to ensure the correct behaviour of the
-quality protocol. By quality protocol we refer to all the methods and techniques
-used such as:
+Neutron Monitor data are widely used by researchers in different research
+fields not necessarily related to cosmic rays, such as space weather and/or
+geomagnetic studies. That's why the Neutron Monitor Database
+(NMDB)\cite{NMDB2011} puts effort into delivering data with the best quality
+possible. The data are also used in real-time GLE alarm systems and other
+real-time applications; therefore, the data quality protocol must be applied in
+real-time. Eventually, the data will be revised by a human supervisor to ensure
+the correct behaviour of the quality protocol. By quality protocol we refer to
+all the methods and techniques used such as:
 
 \begin{itemize}
 	\item   Detection of abnormal data, commonly referred to as spikes.
-    \item   Detection of inactivity, which will lead to a notification to the
-        team responsible for the Neutron Monitor station.
+    \item   Detection of inactivity, i.e, there are no data uploaded in NMDB for
+        the last minutes. This will lead to a notification to the team
+        responsible for the Neutron Monitor station. 
     \item Neutron monitors are formed by several counter tubes, typically
         eighteen. A malfunction in a single tube shouldn't make the entire
         station stop reading cosmic rays measurements. While it is true that
@@ -58,19 +62,19 @@ used such as:
         Since changes in the immediate environment or the instruments can cause
         overall changes in the measured values of a Neutron Monitor, detecting
         and correcting those changes is desirable.
-    \item Comparing the data from one NM station to the data of different
-        nearby NM stations. Detecting isolated events in one NM station
-        could indicate that there is a malfunction in that NM station.	
+    \item Comparing the data from one station to the data of different nearby
+        stations. Detecting isolated events could indicate that there is a
+        malfunction in that station.	
 \end{itemize}
 
-Once the corrupted data is detected, the cause of such data corruption can often 
-be traced down to its cause. Most of the times those malfunctions are caused by the instruments
-forming the data acquisition system, so detecting the corrupt data and its cause
-helps us improve and learn more about it. In order
-to ease the detection of the corrupt data we are working in the
-development of a Web tool which will help us detect these corruptions. The Web
-application makes use of dynamically generated plots which are designed to highlight
-possible corrupted data.
+Once the corrupted data are detected, the cause of such data corruption can
+often be traced down to its cause. Most of the times those malfunctions are
+caused by the instruments forming the data acquisition system, so detecting the
+corrupt data and its cause helps us improve and learn more about it. In order to
+ease the detection of the corrupt data we are working in the development of a
+Web tool which will help us detect these corruptions. The Web application makes
+use of dynamically generated plots which are designed to highlight possible
+corrupted data.
 
 This software is currently running for testing in the second release of the data
 acquisition system\cite{Garcia2014} designed for the CaLMa\cite{Medina2013} and
@@ -101,15 +105,16 @@ data to be represented.
 The model component is located on the server side, in the data acquisition
 system. This model comprises all the data captured from each counter tube and
 the algorithms used to process these data, such as atmospheric pressure
-corrections, sanity controls, editors to combine all the readings into a single
+corrections, sanity checks, editors to combine all the readings into a single
 one, etc.
 
 Several controllers adapt and serve the model data as REST-like web services,
 using JSON for data representation. This web services are designed to be a
-documented API for accessing the station information and services, allowing
-third party applications to be further developed. The main consumer of this API
-right now is the spike tool, which is used to track and mark anomalous surges in
-the data from the station. The next section describes this tool in detail.
+documented Application Programming Interface (API) for accessing the station
+information and services, allowing third party applications to be further
+developed. The main consumer of this API right now is the spike tool, which is
+used to track and mark anomalous surges in the data from the station. The next
+section describes this tool in detail.
 
 \begin{figure}[h]
     \centering
@@ -141,7 +146,7 @@ or Out. The chart also offers a navigator which allows us to navigate forwards o
 backwards in time. Datetime input fields are available too, which allows the user to
 plot a specific time interval.
 
-At first the uncorrected data is used to generate the charts, but we are given
+At first the uncorrected data are used to generate the charts, but we are given
 the chance to choose between Uncorrected data and Efficiency and Pressure corrected
 data. The atmospheric pressure is also plotted, which helps us to evaluate how the
 atmospheric pressure affects the measurements of our Neutron Monitor station.
@@ -206,15 +211,20 @@ features are summarized below.
     \item[Alarms and push notifications] When connectivity allows it, it will
         be possible to configure alarms and notifications to recipients using
         the new push mobile technologies. For example, if the station is no
-        longer uploading data to NMDB or if data is out of quality standards
+        longer uploading data to NMDB or if its data is out of quality
+        standards
     \item[Detector response histogram] A new design from University of New
-      	Hampshire of the front-end amplifiers provides a pulse which
-        width is proportional to the energy of the incident particle. The new
-        FPGA IP-core running in the NOAS, the second version of our data
-        acquisition system, is able to read these pulses and to generate a
-        histogram with the distribution of the pulse energy over a given time
-        interval. This will enable a mechanism for non-intrusive diagnostics of
-        the counter tubes. 
+        Hampshire of the front-end amplifiers provides a pulse which width is
+        proportional to the energy of the incident particle. The new data
+        acquisition system NOAS features a different programmed core running in
+        its Field Programmable Gate Array (FPGA) device. This core enables the
+        system to read these pulses and to generate a histogram with the
+        distribution of the pulse energy over a given time interval. This will
+        enable a mechanism for non-intrusive diagnostics of the counter tubes.
+        This means that diagnostics can be carried out without disconnecting the
+        detector, changing its biasing voltage or, in general, altering its
+        normal operational parameters. Therefore there is no need to interrupt
+        the radiation measurements while the tests are being conducted.
 \end{description}
 
 
