@@ -6,6 +6,7 @@ Tasks Hristo.
     Hacer diagrama SDA.
 
 Tasks Oscar.
+
     Pintar diagrama SDA.
     Explicar TODOS diagrama System architecture. 
 
