@@ -1,5 +1,14 @@
 nmcp-article
 ==
+Tasks Hristo.
+
+    Modificar diagrama System architecture.
+    Hacer diagrama SDA.
+
+Tasks Oscar.
+    Pintar diagrama SDA.
+    Explicar TODOS diagrama System architecture. 
+
 Revisions Log Autors
 
     [X] Initial of the authors first name without point.
