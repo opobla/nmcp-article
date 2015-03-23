@@ -47,8 +47,8 @@ the correct behaviour of the quality protocol. By quality protocol we refer to
 all the methods and techniques used such as:
 
 \begin{itemize}
-	\item   Detection of abnormal data, commonly referred to as spikes.
-    \item   Detection of inactivity, i.e, there are no data uploaded in NMDB for
+	\item Detection of abnormal data, commonly referred to as spikes.
+    \item Detection of inactivity, i.e, there are no data uploaded in NMDB for
         the last minutes. This will lead to a notification to the team
         responsible for the Neutron Monitor station. 
     \item Neutron monitors are formed by several counter tubes, typically
@@ -70,11 +70,24 @@ all the methods and techniques used such as:
 Once the corrupted data are detected, the cause of such data corruption can
 often be traced down to its cause. Most of the times those malfunctions are
 caused by the instruments forming the data acquisition system, so detecting the
-corrupt data and its cause helps us improve and learn more about it. In order to
-ease the detection of the corrupt data we are working in the development of a
-Web tool which will help us detect these corruptions. The Web application makes
-use of dynamically generated plots which are designed to highlight possible
-corrupted data.
+corrupt data and its cause helps us improve and learn more about it. The figure
+\ref{fig:NoisePoints} shows schematically the main sources of errors. Most of
+them are Electro-Magnetic Interferences (EMI) in the preamplifiers (A), in the
+transmission lines from the amplifiers to the data acquisition system (B) and in
+the data acquisition hardware itself (C). Also malfunctions in the software (D)
+can introduce undesirable artifacts in the data.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[keepaspectratio, width=1\textwidth]{./resources/NoisePoints.png}
+    \caption{Possible error sources.}
+    \label{fig:NoisePoints}
+\end{figure}
+
+In order to ease the detection of the corrupt data we are working in the
+development of a Web tool which will help us detect these corruptions. The Web
+application makes use of dynamically generated plots which are designed to
+highlight possible corrupted data.
 
 This software is currently running for testing in the second release of the data
 acquisition system\cite{Garcia2014} designed for the CaLMa\cite{Medina2013} and
@@ -97,24 +110,40 @@ the data, the data processing and the data representation.
 
 The view component is in charge of the data representation and the user
 interface. In our system, this component is mainly executed by the client in a
-web browser, which is not only a convenient graphical output device but
-also provides a way to interact with the user. In response to these
-interactions, the browser makes requests to a server which answers back with new
-data to be represented.
+web browser, which is not only a convenient graphical output device but also
+provides a way to interact with the user. In response to these interactions, the
+browser makes requests to a server which answers back with new data to be
+represented. All the software running in this component has been written in
+JavaScript, and make intensive use of two libraries:
+HighStock\cite{web:highstock} to draw plots and charts, and Sencha
+ExtJS\cite{web:extjs} that is a very powerful framework that handles between
+other things the graphical user interface.
 
 The model component is located on the server side, in the data acquisition
 system. This model comprises all the data captured from each counter tube and
 the algorithms used to process these data, such as atmospheric pressure
 corrections, sanity checks, editors to combine all the readings into a single
-one, etc.
+one, etc. There are two databases involved in this component, one in the data
+acquisition system itself and another in a regular server. The first one is a
+small and light SQLite database, running in the data acquisition system on a
+Beagle Bone Black embedded system\cite{Garcia2014}. This database stores per
+detector count rates, atmospheric pressure and voltage levels along with a time
+stamp. The data from this database are edited, corrected and sent to a second
+database server running MySQL\cite{web:mysql}. This is a enterprise grade
+relational database server, used also by NMDB. The software needed to implement
+the editors, correction, and transfer between databases has been written in PHP
+programming language, using the Zend\cite{web:zend} as support framework.
 
 Several controllers adapt and serve the model data as REST-like web services,
-using JSON for data representation. This web services are designed to be a
-documented Application Programming Interface (API) for accessing the station
-information and services, allowing third party applications to be further
-developed. The main consumer of this API right now is the spike tool, which is
-used to track and mark anomalous surges in the data from the station. The next
-section describes this tool in detail.
+using JSON\cite{wiki:JSON} for data representation. REST is a well known
+software architecture that constraints the design of components to increase
+compatibility and isolation, standardising the way that services can be
+consumed. This web services are designed to be a documented Application
+Programming Interface (API) for accessing the station information and services,
+allowing third party applications to be further developed. The main consumer of
+this API right now is the spike tool, which is used to track and mark anomalous
+surges in the data from the station. The next section describes this tool in
+detail.
 
 \begin{figure}[h]
     \centering
@@ -227,6 +256,11 @@ features are summarized below.
         the radiation measurements while the tests are being conducted.
 \end{description}
 
+Even though this tool is focused on spikes, there are many other data anomalies
+that affect data quality, like data drift, steps, missing data, and so one.
+Dealing with each one of these requires a very different approach and further
+study is therefore required. When available, the software designed to address
+these problems could be easily integrated in the NMCP as a new service.
 
 \subsection*{Acknowledgments} 
 

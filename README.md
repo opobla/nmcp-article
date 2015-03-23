@@ -10,51 +10,113 @@ Tasks Oscar.
     Pintar diagrama SDA.
     Explicar TODOS diagrama System architecture. 
 
-Revisions Log Autors
+Revisions Log: Autors
 
     [X] Initial of the authors first name without point.
 
-Revisions Log Abstract
+Revisions Log: Abstract
 
-    [X] Define abbreviation NOAS. --> NOAS is not an abbreviation, it is just a
-    given name from an informal "Nacho and Oscar Acquisition System". We have
-    changed the original text "with the new NOAS" for "with the so called
-    NOAS".
+    [X] Define abbreviation NOAS. -->
+        NOAS is not an abbreviation, it is just a given name from an informal
+        "Nacho and Oscar Acquisition System". We have changed the original text
+        "with the new NOAS" for "with the so called NOAS".
     [X] Typo error: "If features"-->"It features".
 
-Revisions Log Introduction
+Revisions Log: Introduction
 
-    [X] Syntax error: "Neutron Monitor data is widely widely"-->"Neutron Monitor data are widely". As data are plural here I would use: "data are widely used".
+    [X] Syntax error: "Neutron Monitor data is widely widely"-->
+        "Neutron Monitor data are widely". As data are plural here I would use:
+        "data are widely used".
     [X] Typo error: "real time"-->"real-time".
-    #TODO What about drifts and steps.
+    [X] What about drifts and steps.
+        The next has been included as "future work":
+            "Even though this tool is focused on spikes, there are many other
+            data anomalies that affect data quality, like data drift, steps,
+            missing data, and so one.  Dealing with each one of these requires
+            a very different approach and further study is therefore required.
+            When available, the software designed to address these problems
+            could be easily integrated in the NMCP as a new service."
     [X] What is meant with inactivity.
-        Detection of inactivity, i.e, there are no data uploaded in NMDB for
-        the last minutes. This will lead to a notification to the team
-        responsible for the Neutron Monitor station.
+        The next has been added in the introduction:
+            "Detection of inactivity, i.e, there are no data uploaded in NMDB
+            for the last minutes. This will lead to a notification to the team
+            responsible for the Neutron Monitor station."
     [X] Syntax error: "Monitor neutron"-->"Neutron monitor".
     [X] All the references to "neutron monitor" have been uppercased.
     [X] The abbreviation "NM" is not explicitly introduced.
         Abbreviation was not necessary as it is not used later in the document,
         so we have restructured the paragraph as follows:
-        "Comparing the data from one station to the data of different nearby
-        stations. Detecting isolated events could indicate that there is a
-        malfunction in that station."
-    #TODO "those malfunctions are caused by the instruments forming the data
+            "Comparing the data from one station to the data of different nearby
+            stations. Detecting isolated events could indicate that there is a
+            malfunction in that station."
+    [X] "those malfunctions are caused by the instruments forming the data
     acquisition system". Can you define what are the different components of the
     "data acquisition system".
+        A new figure has been introduced, along with the following text, to
+        clarify this point:
+            "The figure \ref{fig:NoisePoints} shows schematically the main
+            sources of errors. Most of them are Electro-Magnetic Interferences
+            (EMI) in the preamplifiers (A), in the transmission lines from the
+            amplifiers to the data acquisition system (B) and in the data
+            acquisition hardware itself (C). Also malfunctions in the software
+            (D) can introduce undesirable artifacts in the data."
 
+Revisions Log: System Architecture
 
-Revisions Log System Architecture
-    
     [X] Caption of Figure 1: "Architecture"-->"System Architecture".
     [X] "sanity controls" not appropriate. Maybe "sanity checks".
-    #TODO Most readers do not understand "REST-like web services".
-    #TODO Reference "Json" or give full name.
+    [X] Most readers do not understand "REST-like web services".
+    The following has been introduced to clarify:
+            "Several controllers adapt and serve the model data as REST-like web
+            services, using JSON for data representation. REST is a well known
+            software architecture that constraints the design of components to
+            increase compatibility and isolation, standardising the way that
+            services can be consumed."
+    [X] Reference "Json" or give full name.
+            Cited.
     [X] Introduce the abbreviation "API".
-    #TODO Figure 1. System Architecture.
+    [X] Figure 1. System Architecture.
         [X] Syntax error: "Frontend make use"-->"Frontend makes use".
-        #TODO Highstock, Ajax, PHP, ZendFramework, BeagleBone Black
-        #TODO Figure 1: In Figure 1 there are several components that are not mentioned in the text and that are probablynot known for many of the potential readers of this paper: "HIGHSTOCK", "Ajax", nice blue elephant whitch characters "php", "ZEND FRAMEWORK", "BeagleBone Black". I think that "python" is a software language and not a data acquisition software. Please help the reader to understand.
+        [X] Highstock, Ajax, PHP, ZendFramework, BeagleBone Black Figure 1: In
+        Figure 1 there are several components that are not mentioned in the text
+        and that are probablynot known for many of the potential readers of this
+        paper: "HIGHSTOCK", "Ajax", nice blue elephant whitch characters "php",
+        "ZEND FRAMEWORK", "BeagleBone Black". I think that "python" is a
+        software language and not a data acquisition software. Please help the
+        reader to understand.
+
+        Some explanations have been included:
+
+        -----
+        [..] All the software running in this component has been written in
+        JavaScript, and make intensive use of two libraries:
+        HighStock\cite{web:highstock} to draw plots and charts, and Sencha
+        ExtJS\cite{web:extjs} that is a very powerful framework that handles
+        between other things the graphical user interface.[..]
+        -----
+        [..] There are two databases involved in this component, one in the
+        data acquisition system itself and another in a regular server. The
+        first one is a small and light SQLite database, running in the data
+        acquisition system on a Beagle Bone Black embedded
+        system\cite{Garcia2014}. This database stores per detector count
+        rates, atmospheric pressure and voltage levels along with a time
+        stamp. The data from this database are edited, corrected and sent to a
+        second database server running MySQL\cite{web:mysql}. This is a
+        enterprise grade relational database server, used also by NMDB. The
+        software needed to implement the editors, correction, and transfer
+        between databases has been written in PHP programming language, using
+        the Zend\cite{web:zend} as support framework [..]
+        -----
+        [..] using JSON\cite{wiki:JSON} for data representation. REST is a well
+        known software architecture that constraints the design of components to
+        increase compatibility and isolation, standardising the way that
+        services can be consumed. This web services are designed to be a
+        documented Application Programming Interface (API) for accessing the
+        station information and services, allowing third party applications to
+        be further developed. The main consumer of this API right now is the
+        spike tool, which is used to track and mark anomalous surges in the data
+        from the station. The next section describes this tool in detail. [..]
+
 
 Revisions Log Spike Tool
 
