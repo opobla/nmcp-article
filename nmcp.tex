@@ -114,9 +114,9 @@ web browser, which is not only a convenient graphical output device but also
 provides a way to interact with the user. In response to these interactions, the
 browser makes requests to a server which answers back with new data to be
 represented. All the software running in this component has been written in
-JavaScript, and make intensive use of two libraries:
+JavaScript, and makes intensive use of two libraries:
 HighStock\cite{web:highstock} to draw plots and charts, and Sencha
-ExtJS\cite{web:extjs} that is a very powerful framework that handles between
+ExtJS\cite{web:extjs} which is a very powerful framework that handles between
 other things the graphical user interface.
 
 The model component is located on the server side, in the data acquisition
@@ -129,9 +129,9 @@ small and light SQLite database, running in the data acquisition system on a
 Beagle Bone Black embedded system\cite{Garcia2014}. This database stores per
 detector count rates, atmospheric pressure and voltage levels along with a time
 stamp. The data from this database are edited, corrected and sent to a second
-database server running MySQL\cite{web:mysql}. This is a enterprise grade
+database server running MySQL\cite{web:mysql}. This is an enterprise grade
 relational database server, used also by NMDB. The software needed to implement
-the editors, correction, and transfer between databases has been written in PHP
+the editors, corrections, and transfer between databases has been written in PHP
 programming language, using the Zend\cite{web:zend} as support framework.
 
 Several controllers adapt and serve the model data as REST-like web services,
@@ -257,7 +257,7 @@ features are summarized below.
 \end{description}
 
 Even though this tool is focused on spikes, there are many other data anomalies
-that affect data quality, like data drift, steps, missing data, and so one.
+that affect data quality, like data drifts, steps, missing data, and so on.
 Dealing with each one of these requires a very different approach and further
 study is therefore required. When available, the software designed to address
 these problems could be easily integrated in the NMCP as a new service.
