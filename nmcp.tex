@@ -36,26 +36,26 @@ Catalán$^{1,2}$ and D Radchenko$^{2}$}
 
 \section{Introduction}
 
-Neutron Monitor data are widely used by researchers in different research
+Neutron Monitor data is widely used by researchers in different research
 fields not necessarily related to cosmic rays, such as space weather and/or
 geomagnetic studies. That's why the Neutron Monitor Database
 (NMDB)\cite{NMDB2011} puts effort into delivering data with the best quality
-possible. The data are also used in real-time GLE alarm systems and other
-real-time applications; therefore, the data quality protocol must be applied in
-real-time. Eventually, the data will be revised by a human supervisor to ensure
-the correct behaviour of the quality protocol. By quality protocol we refer to
-all the methods and techniques used such as:
+possible. The data is also used in real-time GLE alarm systems and other
+real-time applications; therefore, a data quality protocol must be applied in
+real-time, although it will be eventually revised by a human supervisor to ensure
+ its correct behaviour. By quality protocol we refer to
+all the methods and techniques used, such as:
 
 \begin{itemize}
 	\item Detection of abnormal data, commonly referred to as spikes.
-    \item Detection of inactivity, i.e, there are no data uploaded in NMDB for
+    \item Detection of inactivity, i.e, if there is no data uploaded in NMDB for
         the last minutes. This will lead to a notification to the team
         responsible for the Neutron Monitor station. 
     \item Neutron monitors are formed by several counter tubes, typically
         eighteen. A malfunction in a single tube shouldn't make the entire
-        station stop reading cosmic rays measurements. While it is true that
+        station stop reading cosmic ray measurements. While it is true that
         missing counters degrades the quality of the measurement by increasing its
-        variability, if the number of working tubes is enough the result can
+        variability, if the number of working tubes is high enough the result can
         still be acceptable. This leads us to the need of monitoring and
         detection of malfunctions separately in each of the tubes.  
     \item Detection of changes with respect to the historical activity.
@@ -67,10 +67,10 @@ all the methods and techniques used such as:
         malfunction in that station.	
 \end{itemize}
 
-Once the corrupted data are detected, the cause of such data corruption can
+Once the corrupted data is detected, the cause of such data corruption can
 often be traced down to its cause. Most of the times those malfunctions are
 caused by the instruments forming the data acquisition system, so detecting the
-corrupt data and its cause helps us improve and learn more about it. The figure
+corrupt data helps us improve and learn more about its cause. The figure
 \ref{fig:NoisePoints} shows schematically the main sources of errors. Most of
 them are Electro-Magnetic Interferences (EMI) in the preamplifiers (A), in the
 transmission lines from the amplifiers to the data acquisition system (B) and in
@@ -84,8 +84,8 @@ can introduce undesirable artifacts in the data.
     \label{fig:NoisePoints}
 \end{figure}
 
-In order to ease the detection of the corrupt data we are working in the
-development of a Web tool which will help us detect these corruptions. The Web
+In order to facilitate the detection of the corrupt data we are working in the
+development of a web tool which will help us detect these corruptions. The web
 application makes use of dynamically generated plots which are designed to
 highlight possible corrupted data.
 
@@ -97,12 +97,12 @@ KIEL2 stations.
 \section{System architecture}
 
 There are two main elements in the architecture: a client that requests and
-consumes data using a web browser, and a system that collects and serves the
+consumes data using a web browser and a system that collects and serves the
 data, which in this system is the data acquisition system. This separation of
 roles follows the client-server design pattern\cite{wiki:ClientServer}.The
 figure \ref{fig:arch} shows a block diagram with all the components involved
 along with its relationships. Each block and relationship will be described
-bellow.
+below.
 
 The software architecture is based on the Model-View-Controller (MVC) software
 design pattern\cite{wiki:MVC}. This pattern encourages the separation between
@@ -116,12 +116,12 @@ browser makes requests to a server which answers back with new data to be
 represented. All the software running in this component has been written in
 JavaScript, and makes intensive use of two libraries:
 HighStock\cite{web:highstock} to draw plots and charts, and Sencha
-ExtJS\cite{web:extjs} which is a very powerful framework that handles between
+ExtJS\cite{web:extjs} which is a very powerful framework that handles among
 other things the graphical user interface.
 
 The model component is located on the server side, in the data acquisition
 system. This model comprises all the data captured from each counter tube and
-the algorithms used to process these data, such as atmospheric pressure
+the algorithms used to process this data, such as atmospheric pressure
 corrections, sanity checks, editors to combine all the readings into a single
 one, etc. There are two databases involved in this component, one in the data
 acquisition system itself and another in a regular server. The first one is a
@@ -131,8 +131,7 @@ detector count rates, atmospheric pressure and voltage levels along with a time
 stamp. The data from this database are edited, corrected and sent to a second
 database server running MySQL\cite{web:mysql}. This is an enterprise grade
 relational database server, used also by NMDB. The software needed to implement
-the editors, corrections, and transfer between databases has been written in PHP
-programming language, using the Zend\cite{web:zend} as support framework.
+the editors, corrections, and transfer between databases has been written in the PHP programming language, using the Zend\cite{web:zend} as support framework.
 
 Several controllers adapt and serve the model data as REST-like web services,
 using JSON\cite{wiki:JSON} for data representation. REST is a well known
@@ -164,7 +163,7 @@ are easy to trace. As shown in the figure \ref{fig:SpikeTool}, initially the
 chart displays a large set of data, and some kind of data grouping is needed.
 Just averaging the data flattens the spikes.  The Candlestick chart is used to
 prevent the aforementioned problem, as this way the max and min values can be
-easily distinguished. Eventually when a short interval of data is requested and
+easily distinguished. Eventually, when a short interval of data is requested and
 no grouping is needed to display it, the chart will automatically switch to a
 line chart.
 
@@ -196,19 +195,18 @@ set of data, which means that the mentioned data will be considered invalid and
 treated as void in the future.
 
 The table which contains the marked data can be seen on a separate window, which
-can be show and hidden when needed. The window also contains all the
+can be shown and hidden when needed. The window also contains all the
 controls needed for submitting and unmarking the marked data.
 
 The last module, \texttt{ChannelStats}, is intended to give information about the
 different channels separately, so that we can identify malfunctions on isolated
 channels. The module offers various statistics for user defined time intervals,
 among which the simplest are the average value, minimum/maximum
-values and standard deviation.
+value and standard deviation.
 
 The \texttt{ChannelStats} module offers distribution charts, too. Histograms with the
 channels' raw data are plotted in the requested time intervals. The chart is
-highly interactive, and the series can be shown, hidden and highlighted. Currently
-we are working on this module.
+highly interactive, and the series can be shown, hidden and highlighted. This module is currently under development.
 
 \begin{figure}[h]
     \centering
@@ -241,7 +239,7 @@ features are summarized below.
         be possible to configure alarms and notifications to recipients using
         the new push mobile technologies. For example, if the station is no
         longer uploading data to NMDB or if its data is out of quality
-        standards
+        standards.
     \item[Detector response histogram] A new design from University of New
         Hampshire of the front-end amplifiers provides a pulse which width is
         proportional to the energy of the incident particle. The new data

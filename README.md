@@ -18,6 +18,11 @@ Revisions Log: Introduction
     [X] Syntax error: "Neutron Monitor data is widely widely"-->
         "Neutron Monitor data are widely". As data are plural here I would use:
         "data are widely used".
+		Even though the observation is right ("data" is plural), according to
+        the Merriam-Webster Dictionary, when data refers to an abstract mass noun 
+		(like "information"), it takies a singular verb and singular modifiers.
+		It is also a widely accepted usage form in standard English.
+		Reference: http://www.merriam-webster.com/dictionary/data
     [X] Typo error: "real time"-->"real-time".
     [X] What about drifts and steps.
         The next has been included as "future work":
