@@ -68,7 +68,7 @@ all the methods and techniques used, such as:
 \end{itemize}
 
 Once the corrupted data is detected, the cause of such data corruption can
-often be traced down to its cause. Most of the times those malfunctions are
+often be traced down to its cause. Most of the time these malfunctions are
 caused by the instruments forming the data acquisition system, so detecting the
 corrupt data helps us improve and learn more about its cause. The figure
 \ref{fig:NoisePoints} shows schematically the main sources of errors. Most of
@@ -126,7 +126,7 @@ corrections, sanity checks, editors to combine all the readings into a single
 one, etc. There are two databases involved in this component, one in the data
 acquisition system itself and another in a regular server. The first one is a
 small and light SQLite database, running in the data acquisition system on a
-Beagle Bone Black embedded system\cite{Garcia2014}. This database stores per
+BeagleBone Black embedded system\cite{Garcia2014}. This database stores per
 detector count rates, atmospheric pressure and voltage levels along with a time
 stamp. The data from this database are edited, corrected and sent to a second
 database server running MySQL\cite{web:mysql}. This is an enterprise grade
@@ -241,7 +241,7 @@ features are summarized below.
         longer uploading data to NMDB or if its data is out of quality
         standards.
     \item[Detector response histogram] A new design from University of New
-        Hampshire of the front-end amplifiers provides a pulse which width is
+        Hampshire of the front-end amplifiers provides a pulse from which the width is
         proportional to the energy of the incident particle. The new data
         acquisition system NOAS features a different programmed core running in
         its Field Programmable Gate Array (FPGA) device. This core enables the

@@ -1,5 +1,41 @@
 nmcp-article
-==
+============
+
+This is the log file of changes made form the feedback from the revisors. All
+the lines starting with [X] means that the change has been applied. Many of them
+are typo/grammar mistakes that have been corrected, for content related issues
+there is an also an explanation of the actions carried out about it.
+
+--- 2015/04/07 ---
+
+
+    [X] \"Most of the times those malfunctions are caused by the instruments forming
+    the data acquisition system, so detecting the corrupt data helps us improve and
+    learn more about its cause.\"
+    --->
+    \"Most of the time these malfunctions are caused by the instruments forming
+    the data acquisition system, so detecting the corrupt data helps us improve and
+    learn more about its cause.\"
+
+
+    [X] \"The first one is a small and ... system on a Beagle Bone Black
+    embedded system[2].\"
+    --->
+    \"The first one is a small and ... system on a BeagleBone Black embedded
+    system[2].\"
+
+
+    [X] \"A new design from University of New Hampshire of the front-end
+    amplifiers provides a pulse which width is proportional to the energy of
+    the incidentparticle.\"
+    --->
+    \"A new design from University of New Hampshire of the front-end
+    amplifiers provides a pulse from which the width is
+    proportional to the energy of the incident particle.\"
+
+
+
+--- 2015/03/25 ---
 
 Revisions Log: Autors
 
@@ -18,11 +54,11 @@ Revisions Log: Introduction
     [X] Syntax error: "Neutron Monitor data is widely widely"-->
         "Neutron Monitor data are widely". As data are plural here I would use:
         "data are widely used".
-		Even though the observation is right ("data" is plural), according to
-        the Merriam-Webster Dictionary, when data refers to an abstract mass noun 
-		(like "information"), it takies a singular verb and singular modifiers.
-		It is also a widely accepted usage form in standard English.
-		Reference: http://www.merriam-webster.com/dictionary/data
+        Even though the observation is right ("data" is plural), according to
+        the Merriam-Webster Dictionary, when data refers to an abstract mass noun
+        (like "information"), it takies a singular verb and singular modifiers.
+        It is also a widely accepted usage form in standard English.
+        Reference: http://www.merriam-webster.com/dictionary/data
     [X] Typo error: "real time"-->"real-time".
     [X] What about drifts and steps.
         The next has been included as "future work":
