@@ -6,6 +6,52 @@ the lines starting with [X] means that the change has been applied. Many of them
 are typo/grammar mistakes that have been corrected, for content related issues
 there is an also an explanation of the actions carried out about it.
 
+--- 2015/05/11 ---
+
+    [X] \"so-called\" instead of \"so called\".
+
+    [X] Section \"1. Introduction\" May I propose the following change (compare
+    comments in earlier reviews):\"Neutron Monitor data is widely used by
+    researchers in different research fields not necessarily related to cosmic
+    rays, such as space weather and/or geomagnetic studies.\" --->\"Neutron
+    Monitor measurements are widely used by researchers in different research
+    fields, such as space weather and/or geomagnetic studies.\"
+
+    [ ] \"Detection of inactivity, i.e, if there is no data uploaded in NMDB for
+    the last minutes.\" --->\"Detection of inactivity, i.e. if there are no data
+    uploaded in NMDB for the last minutes.\"
+        Even though the observation is right ("data" is plural), according to
+        the Merriam-Webster Dictionary, when data refers to an abstract mass
+        noun (like "information"), it takes a singular verb and singular
+        modifiers.  It is also a widely accepted usage form in standard English.
+        Reference: http://www.merriam-webster.com/dictionary/data
+
+    [X] As you always use in the text \"Neutron Monitors\" or \"Neutron
+    Monitor\": \"Neutron monitors are formed by several counter tubes\"
+    --->\"Neutron Monitors are formed by several counter tubes
+
+    [X] \"Figure caption of Figure 1:The figure caption is scarce, I would
+    desire a somewhat detailed caption. 
+        --> "Possible error sources identified in our acquisition process."
+
+    [X] Section \"2.  System architecture\"\"This separation of roles ...
+    pattern[4].The figure ...\" --->\"This separation of roles ...  pattern[4].
+    The figure ...\"
+
+    [X] Section \"3. The spike tool\"It is not clear what you want to say with
+    \"no data grouping\" in the sentence: \"Due to the fact that there are 18
+    channels this option is available only when no data grouping is needed.\"
+        Once we have a spike located, we can see the raw reading of the counter
+        tubes, which allows us to better track the spike. This option is only
+        activated when representation time scale is small enough to allow
+        plotting every single value for each counter without neither
+        overplotting nor cluttering the chart.
+
+
+
+
+
+
 --- 2015/04/07 ---
 
 

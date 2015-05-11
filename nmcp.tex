@@ -22,7 +22,7 @@ Catalán$^{1,2}$ and D Radchenko$^{2}$}
     This work presents the current status and future plans of the Neutron
     Monitor Control Panel (NMCP), a new software developed to aid the operator
     in typical station maintenance and configuration operations. This software
-    is integrated with the new so called NOAS data acquisition system and it
+    is integrated with the new so-called NOAS data acquisition system and it
     can be accessed using a supported web browser. It features a visual
     inspection tool to help the operator to identify spikes in the data, trace
     the origin of the spike back to the raw readings of each counter tube and
@@ -36,22 +36,21 @@ Catalán$^{1,2}$ and D Radchenko$^{2}$}
 
 \section{Introduction}
 
-Neutron Monitor data is widely used by researchers in different research
-fields not necessarily related to cosmic rays, such as space weather and/or
-geomagnetic studies. That's why the Neutron Monitor Database
-(NMDB)\cite{NMDB2011} puts effort into delivering data with the best quality
-possible. The data is also used in real-time GLE alarm systems and other
-real-time applications; therefore, a data quality protocol must be applied in
-real-time, although it will be eventually revised by a human supervisor to ensure
- its correct behaviour. By quality protocol we refer to
-all the methods and techniques used, such as:
+Neutron Monitor measurements are widely used by researchers in different
+research fields, such as space weather and/or geomagnetic studies. That's why
+the Neutron Monitor Database (NMDB)\cite{NMDB2011} puts effort into delivering
+data with the best quality possible. The data is also used in real-time GLE
+alarm systems and other real-time applications; therefore, a data quality
+protocol must be applied in real-time, although it will be eventually revised by
+a human supervisor to ensure its correct behaviour. By quality protocol we refer
+to all the methods and techniques used, such as:
 
 \begin{itemize}
 	\item Detection of abnormal data, commonly referred to as spikes.
     \item Detection of inactivity, i.e, if there is no data uploaded in NMDB for
         the last minutes. This will lead to a notification to the team
         responsible for the Neutron Monitor station. 
-    \item Neutron monitors are formed by several counter tubes, typically
+    \item Neutron Monitors are formed by several counter tubes, typically
         eighteen. A malfunction in a single tube shouldn't make the entire
         station stop reading cosmic ray measurements. While it is true that
         missing counters degrades the quality of the measurement by increasing its
@@ -80,7 +79,7 @@ can introduce undesirable artifacts in the data.
 \begin{figure}[ht]
     \centering
     \includegraphics[keepaspectratio, width=1\textwidth]{./resources/NoisePoints.png}
-    \caption{Possible error sources.}
+    \caption{Possible error sources identified in our acquisition process.}
     \label{fig:NoisePoints}
 \end{figure}
 
@@ -99,7 +98,7 @@ KIEL2 stations.
 There are two main elements in the architecture: a client that requests and
 consumes data using a web browser and a system that collects and serves the
 data, which in this system is the data acquisition system. This separation of
-roles follows the client-server design pattern\cite{wiki:ClientServer}.The
+roles follows the client-server design pattern\cite{wiki:ClientServer}. The
 figure \ref{fig:arch} shows a block diagram with all the components involved
 along with its relationships. Each block and relationship will be described
 below.
@@ -131,7 +130,8 @@ detector count rates, atmospheric pressure and voltage levels along with a time
 stamp. The data from this database are edited, corrected and sent to a second
 database server running MySQL\cite{web:mysql}. This is an enterprise grade
 relational database server, used also by NMDB. The software needed to implement
-the editors, corrections, and transfer between databases has been written in the PHP programming language, using the Zend\cite{web:zend} as support framework.
+the editors, corrections, and transfer between databases has been written in the
+PHP programming language, using the Zend\cite{web:zend} as support framework.
 
 Several controllers adapt and serve the model data as REST-like web services,
 using JSON\cite{wiki:JSON} for data representation. REST is a well known
@@ -180,8 +180,9 @@ data. The atmospheric pressure is also plotted, which helps us to evaluate how t
 atmospheric pressure affects the measurements of our Neutron Monitor station.
 
 Once we have a spike located, we can see the raw reading of the counter tubes,
-which allows us to better track the spike. Due to the fact that there are 18
-channels this option is available only when no data grouping is needed.
+which allows us to better track the spike. This option is only activated when
+representation time scale is small enough to allow plotting every single value
+for each counter without neither overplotting nor cluttering the chart.
 
 As said before, the \texttt{SpikeCorrected} module is very similar to the
 \texttt{Spike} module which was explained above. First of all, this module makes
